@@ -157,7 +157,8 @@ class Trainer:
                 keras.metrics.AUC(name="auc")
             ]
 
-            optimizer = keras.optimizers.SGD(learning_rate=kwargs["learning_rate"], momentum=0.9, nesterov=True)
+            optimizer = keras.optimizers.RMSprop(
+                learning_rate=kwargs["learning_rate"], momentum=0.9)
 
             model.compile(optimizer=optimizer, loss="categorical_crossentropy", metrics=metrics)
 
@@ -192,7 +193,7 @@ class Trainer:
             mlflow.log_param("output", self.output_shape)
             mlflow.log_param("epochs", kwargs["epochs"])
             mlflow.log_param("loss_function", "categorical_crossentropy")
-            mlflow.log_param("optimizer", "Stochastic Gradient Descent")
+            mlflow.log_param("optimizer", "RMSprop")
             
             # log metrics
             mlflow.log_metric("test_loss", loss)
