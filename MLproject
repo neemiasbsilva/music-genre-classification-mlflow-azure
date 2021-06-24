@@ -1,0 +1,21 @@
+name: music_genre_tensorflow
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      data_path: {type: string}
+      experiment_name: {type: string, default: "./data/data.json" }
+      height: int
+      width: int
+      channels: int
+      run_origin: {type: string, default: "default" }
+    command: "python train.py 
+                --experiment_name {experiment_name} 
+                --data_path {data_path} 
+                --height {height}  
+                --width {width}  
+                --channels {channels} 
+                --run_origin {run_origin}"
+    
