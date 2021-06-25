@@ -1,4 +1,4 @@
-name: music_genre_tensorflow
+name: music_genre_experiment
 
 conda_env: conda.yaml
 
@@ -12,10 +12,12 @@ entry_points:
       channels: int
       run_origin: {type: string, default: "default" }
     command: "python train.py 
-                --experiment_name {experiment_name} 
                 --data_path {data_path} 
+                --experiment_name {experiment_name} 
+                --subscription_id {subscription_id}
+                --resource_group {resource_group}
+                --workspace_name {workspace_name}
                 --height {height}  
                 --width {width}  
                 --channels {channels} 
                 --run_origin {run_origin}"
-    

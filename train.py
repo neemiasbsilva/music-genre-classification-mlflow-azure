@@ -252,6 +252,9 @@ def main():
     parser.add_argument("-output_shape", action="store", required=True,
                         help="Chose what ml algorithm for apply", dest="output_shape")
 
+    parser.add_argument("-run_origin", action="store", required=False,
+                        help="Choose run origin", dest="run_origin")
+
     arguments = parser.parse_args()
 
     data_path = arguments.data_path
@@ -259,7 +262,7 @@ def main():
     subscription_id = arguments.subscription_id
     resource_group = arguments.resource_group
     workspace_name = arguments.workspace_name
-
+    run_origin = arguments.run_origin
 
     height, width, channels = int(arguments.height), int(arguments.width), int(arguments.channels)
     input_shape = (height, width, channels)
@@ -269,7 +272,7 @@ def main():
     model = bd.feed_foward()
     model.summary()
     trainer = Trainer(experiment_name=experiment_name, data_path=data_path, output_shape=output_shape, 
-        subscription_id=subscription_id, resource_group=resource_group, workspace_name=workspace_name)
+        subscription_id=subscription_id, resource_group=resource_group, workspace_name=workspace_name, run_origin=run_origin)
     trainer.train_model(model, epochs=100, learning_rate=1e-3, batch_size=256)
 
 
