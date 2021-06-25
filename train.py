@@ -104,12 +104,14 @@ def plot_historys(history):
 
 class Trainer:
 
-    def __init__(self, experiment_name, data_path, output_shape, subscription_id, tracking_uri=None, run_origin="none"):
+    def __init__(self, experiment_name, data_path, output_shape, subscription_id, workspace_name, resource_group, tracking_uri=None, run_origin="none"):
         self.experiment_name = experiment_name
         self.data_path = data_path
         self.run_origin = run_origin
         self.tracking_uri = tracking_uri
         self.subscription_id = subscription_id
+        self.workspace_name = workspace_name
+        self.resource_group = resource_group
 
 
         print(f"experiment_name: {self.experiment_name}")
@@ -130,7 +132,7 @@ class Trainer:
         
         if (self.experiment_name != "none"):
             ws = Workspace(subscription_id=self.subscription_id,
-                           resource_group="phonetrack", workspace_name="pht-dev-neemias")
+                           resource_group=self.resource_group, workspace_name=self.workspace_name)
             mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
             # try:
                 # self.experiment_id = mlflow.create_experiment(self.experiment_name)
@@ -230,7 +232,13 @@ def main():
                         help="Name for MLflow experiment", dest="experiment_name")
 
     parser.add_argument("-subscription_id", action="store", required=True,
-                        help="Name for MLflow experiment", dest="subscription_id")
+                        help="Subscription id", dest="subscription_id")
+
+    parser.add_argument("-resource_group", action="store", required=True,
+                        help="Resource group", dest="resource_group")
+
+    parser.add_argument("-workspace_name", action="store", required=True,
+                        help="Workspace name", dest="workspace_name")
 
     parser.add_argument("-height", action="store", required=True,
                         help="Height of spectrogram", dest="height")
@@ -249,6 +257,9 @@ def main():
     data_path = arguments.data_path
     experiment_name = arguments.experiment_name
     subscription_id = arguments.subscription_id
+    resource_group = arguments.resource_group
+    workspace_name = arguments.workspace_name
+
 
     height, width, channels = int(arguments.height), int(arguments.width), int(arguments.channels)
     input_shape = (height, width, channels)
@@ -257,7 +268,8 @@ def main():
     bd = BuildModel(input_shape=input_shape, output_shape=output_shape)
     model = bd.feed_foward()
     model.summary()
-    trainer = Trainer(experiment_name=experiment_name, data_path=data_path, output_shape=output_shape, subscription_id=subscription_id)
+    trainer = Trainer(experiment_name=experiment_name, data_path=data_path, output_shape=output_shape, 
+        subscription_id=subscription_id, resource_group=resource_group, workspace_name=workspace_name)
     trainer.train_model(model, epochs=100, learning_rate=1e-3, batch_size=256)
 
 
