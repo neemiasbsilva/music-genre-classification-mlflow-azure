@@ -8,8 +8,8 @@ entry_points:
       data_path: {type: string}
       experiment_name: {type: string, default: "./data/data.json" }
       subscription_id: {type: string}
-      resource_group {type: string}
-      workspace_name {type: string}
+      resource_group: {type: string}
+      workspace_name: {type: string}
       height: int
       width: int
       channels: int

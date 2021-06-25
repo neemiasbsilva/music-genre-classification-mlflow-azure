@@ -159,7 +159,7 @@ class Trainer:
                 keras.metrics.AUC(name="auc")
             ]
 
-            optimizer = keras.optimizers.RMSprop(
+            optimizer = keras.optimizers.Adam(
                 learning_rate=kwargs["learning_rate"], momentum=0.9)
 
             model.compile(optimizer=optimizer, loss="categorical_crossentropy", metrics=metrics)
@@ -195,7 +195,7 @@ class Trainer:
             mlflow.log_param("output", self.output_shape)
             mlflow.log_param("epochs", kwargs["epochs"])
             mlflow.log_param("loss_function", "categorical_crossentropy")
-            mlflow.log_param("optimizer", "RMSprop")
+            mlflow.log_param("optimizer", "Adam")
             
             # log metrics
             mlflow.log_metric("test_loss", loss)
