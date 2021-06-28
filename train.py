@@ -160,7 +160,11 @@ class Trainer:
             ]
 
             optimizer = keras.optimizers.Adam(
+<<<<<<< HEAD
                 learning_rate=kwargs["learning_rate"])
+=======
+                learning_rate=kwargs["learning_rate"], momentum=0.9)
+>>>>>>> da856258f184a15c5cc567b15cbcfe3be016afbb
 
             model.compile(optimizer=optimizer, loss="categorical_crossentropy", metrics=metrics)
 
