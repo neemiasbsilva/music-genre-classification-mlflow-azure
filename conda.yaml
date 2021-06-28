@@ -1,10 +1,10 @@
-name: mlflow-demo-sklearn
+name: music_genre_experiment
 channels:
 - conda-forge
 dependencies:
 - python=3.7.10
+- pip
 - pip:
-    - pip
     - sklearn==0.0
     - sklearn-pandas==1.8.0
     - mlflow
