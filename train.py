@@ -226,34 +226,34 @@ def main():
     parser = argparse.ArgumentParser(
         description="Music Genre Experiment")
 
-    parser.add_argument("-data_path", action="store", required=True,
+    parser.add_argument("--data_path", action="store", required=True,
                         help="Path of waveform dataset ", dest="data_path")
 
-    parser.add_argument("-experiment_name", action="store", required=True,
+    parser.add_argument("--experiment_name", action="store", required=True,
                         help="Name for MLflow experiment", dest="experiment_name")
 
-    parser.add_argument("-subscription_id", action="store", required=True,
+    parser.add_argument("--subscription_id", action="store", required=True,
                         help="Subscription id", dest="subscription_id")
 
-    parser.add_argument("-resource_group", action="store", required=True,
+    parser.add_argument("--resource_group", action="store", required=True,
                         help="Resource group", dest="resource_group")
 
-    parser.add_argument("-workspace_name", action="store", required=True,
+    parser.add_argument("--workspace_name", action="store", required=True,
                         help="Workspace name", dest="workspace_name")
 
-    parser.add_argument("-height", action="store", required=True,
+    parser.add_argument("--height", action="store", required=True,
                         help="Height of spectrogram", dest="height")
 
-    parser.add_argument("-width", action="store", required=True,
+    parser.add_argument("--width", action="store", required=True,
                     help="Width of spectrogram", dest="width")
     
-    parser.add_argument("-channels", action="store", required=True,
+    parser.add_argument("--channels", action="store", required=True,
                     help="Channels of spectrogram", dest="channels")
 
-    parser.add_argument("-output_shape", action="store", required=True,
+    parser.add_argument("--output_shape", action="store", required=True,
                         help="Chose what ml algorithm for apply", dest="output_shape")
 
-    parser.add_argument("-run_origin", action="store", required=False,
+    parser.add_argument("--run_origin", action="store", required=False,
                         help="Choose run origin", dest="run_origin")
 
     arguments = parser.parse_args()
