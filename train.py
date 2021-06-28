@@ -120,7 +120,7 @@ class Trainer:
         print(f"data_path: {self.data_path}")
         
         self.X_train, self.X_val, self.X_test, self.y_train, self.y_val, self.y_test = preprocessing(self.data_path)
-        print(f"Size of train set: {len(self.X_train)}")
+        print(f"\nSize of train set: {len(self.X_train)}")
         print(f"Size of validation set: {len(self.X_val)}")
         print(f"Size of test set: {len(self.X_test)}")
         self.input_shape = self.X_train.shape[1:]
