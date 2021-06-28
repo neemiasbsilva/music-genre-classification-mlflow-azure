@@ -21,7 +21,7 @@ def get_dataset(path_dataset):
 
     resp = requests.get(url=path_dataset)
 
-    dataset = resp.json()
+    dataset = json.loads(resp.content)
     # with open(path_dataset, 'r') as fp:
     #     dataset = json.load(fp)
 
