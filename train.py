@@ -147,13 +147,13 @@ class Trainer:
 
     def train_model(self, model, **kwargs):
 
-        with mlflow.start_run(run_name=self.experiment_name, experiment_id=self.experiment_id):
-            # run_id = run.info.run_uuid
-            # print(f"run_id: {run_id}")
+        with mlflow.start_run(run_name=self.experiment_name, experiment_id=self.experiment_id) as run:
+            run_id = run.info.run_uuid
+            print(f"run_id: {run_id}")
 
-            # experiment_id = run.info.experiment_id
+            experiment_id = run.info.experiment_id
 
-            # print(f"experiment_id: {experiment_id}")
+            print(f"experiment_id: {experiment_id}")
 
             metrics = [
                 keras.metrics.CategoricalAccuracy(name="accuracy"),
