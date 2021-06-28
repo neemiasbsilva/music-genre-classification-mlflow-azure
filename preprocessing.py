@@ -2,6 +2,7 @@ import json
 import numpy as np
 from sklearn.model_selection import train_test_split
 import librosa
+import requests
 
 def get_spectrogram(data):
     inputs = []
@@ -17,8 +18,12 @@ def get_spectrogram(data):
 
 
 def get_dataset(path_dataset):
-    with open(path_dataset, 'r') as fp:
-        dataset = json.load(fp)
+
+    resp = requests.get(url=path_dataset)
+
+    dataset = resp.json()
+    # with open(path_dataset, 'r') as fp:
+    #     dataset = json.load(fp)
 
     inputs = get_spectrogram(np.asarray(dataset["mfcc"]))
     targets = np.array(dataset["labels"])
