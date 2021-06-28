@@ -147,7 +147,7 @@ class Trainer:
 
     def train_model(self, model, **kwargs):
 
-        with mlflow.start_run(run_name=self.experiment_name, experiment_id=self.experiment_id) as run:
+        with mlflow.start_run(run_name=self.experiment_name) as run:
             run_id = run.info.run_uuid
             print(f"run_id: {run_id}")
 
