@@ -143,13 +143,13 @@ class Trainer:
             mlflow.set_experiment(self.experiment_name)
             self.experiment_id = mlflow.get_experiment_by_name(self.experiment_name).experiment_id
 
-            print(f"experiment_id: {self.experiment_id}")
+            # print(f"experiment_id: {self.experiment_id}")
 
     def train_model(self, model, **kwargs):
         
 
         with mlflow.start_run(run_name=self.experiment_name) as run:
-            runID = run.info.run_uuid
+            run_id = run.info.run_uuid
             experimentID = run.info.experiment_id
             print(f"run_id: {run_id}")
 
