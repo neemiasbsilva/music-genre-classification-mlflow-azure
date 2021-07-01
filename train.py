@@ -134,9 +134,9 @@ class Trainer:
             self.y_test, num_classes=self.output_shape, dtype="float32")
         
         if (self.experiment_name != "none"):
-            ws = Workspace(subscription_id=self.subscription_id,
-                           resource_group=self.resource_group, workspace_name=self.workspace_name)
-            mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
+            # ws = Workspace(subscription_id=self.subscription_id,
+            #                 resource_group=self.resource_group, workspace_name=self.workspace_name)
+            # mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
             # try:
                 # self.experiment_id = mlflow.create_experiment(self.experiment_name)
             # except:
@@ -146,6 +146,7 @@ class Trainer:
             print(f"experiment_id: {self.experiment_id}")
 
     def train_model(self, model, **kwargs):
+        
 
         with mlflow.start_run(run_name=self.experiment_name, experiment_id=self.experiment_id) as run:
             run_id = run.info.run_uuid
