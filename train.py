@@ -133,7 +133,7 @@ class Trainer:
         self.y_test = keras.utils.to_categorical(
             self.y_test, num_classes=self.output_shape, dtype="float32")
         
-        if (self.experiment_name != "none"):
+        # if (self.experiment_name != "none"):
             # ws = Workspace(subscription_id=self.subscription_id,
             #                 resource_group=self.resource_group, workspace_name=self.workspace_name)
             # mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
